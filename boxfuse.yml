@@ -29,11 +29,11 @@
       chdir: /tmp/boxfuse
       cmd: mvn package
       
-  - name: fetch WAR
-    fetch:
+  - name: synchronize WAR
+    synchronize:
       src: /tmp/boxfuse/target/hello-1.0.war
-      dest: ./hello-1.0.war
-      flat: true
+      dest: /var/lib/tomcat9/webapps/hello-1.0.war
+    delegate_to: prod-srv
 
 - name: run fusebox
   hosts: prod-srv
@@ -55,9 +55,4 @@
       name: tomcat9
       state: started
       
-  - name: Copy WAR
-    copy:
-      src: ./hello-1.0.war
-      dest: /var/lib/tomcat9/webapps/hello-1.0.war
-
 
