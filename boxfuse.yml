@@ -31,10 +31,9 @@
       
   - name: synchronize WAR
     synchronize:
-      mode: pull
       src: /tmp/boxfuse/target/hello-1.0.war
       dest: /var/lib/tomcat9/webapps/hello-1.0.war
-    delegate_to: build-srv
+      dest_host: prod-srv
 
 - name: run fusebox
   hosts: prod-srvs
