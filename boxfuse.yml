@@ -1,6 +1,6 @@
 ---
 - name: biuld fusebox
-  hosts: build-srv
+  hosts: build-srvs
   become: yes
 
   tasks:
@@ -36,7 +36,7 @@
     delegate_to: prod-srv
 
 - name: run fusebox
-  hosts: prod-srv
+  hosts: prod-srvs
   become: yes
 
   tasks:
@@ -54,5 +54,5 @@
     service:
       name: tomcat9
       state: started
-      
+
 
