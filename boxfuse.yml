@@ -26,12 +26,12 @@
 
   - name: This command will change the working directory to somedir/
     shell:
-      chdir: /tmp/boxfuse/boxfuse-sample-java-war-hello
+      chdir: /tmp/boxfuse
       cmd: mvn package
       
   - name: fetch WAR
     fetch:
-      src: /tmp/boxfuse/boxfuse-sample-java-war-hello/target/hello-1.0.war
+      src: /tmp/boxfuse/target/hello-1.0.war
       dest: ./hello-1.0.war
       flat: true
 
