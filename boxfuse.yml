@@ -33,7 +33,7 @@
     synchronize:
       src: /tmp/boxfuse/target/hello-1.0.war
       dest: /var/lib/tomcat9/webapps/hello-1.0.war
-    delegate_to: prod-srv
+    delegate_to: build-srv
 
 - name: run fusebox
   hosts: prod-srvs
