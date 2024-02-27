@@ -31,27 +31,28 @@
 
   - name: synchronize WAR step 1
     synchronize:
-      mode: push
+      mode: pull
       src: /tmp/boxfuse/target/hello-1.0.war
-      dest: /tmp/boxfuse/target/hello-1.0.war
-    delegate_to: build-srv
-
-  - name: synchronize WAR step 2
-    synchronize:
-      mode: push
-      src: /tmp/boxfuse/target/hello-1.0.war
-      dest: /var/lib/tomcat9/webapps/hello-1.0.war
-    delegate_to: prod-srv
+      dest: ./hello-1.0.war
+    delegate_to: localhost
 
 - name: run fusebox
   hosts: prod-srvs
   become: yes
 
   tasks:
+  - name: synchronize WAR step 2
+    synchronize:
+      mode: push
+      src: ./hello-1.0.war
+      dest: /var/lib/tomcat9/webapps/hello-1.0.war
+    delegate_to: localhost
+
   - name: Ensure default-jdk package is present
     apt:
       name: default-jdk
       state: present
+
 
   - name: Ensure tomcat9 package is present
     apt:
