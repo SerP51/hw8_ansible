@@ -29,7 +29,7 @@
       chdir: /tmp/boxfuse
       cmd: mvn package
 
-- name: synchronize WAR step 1
+  - name: synchronize WAR step 1
     synchronize:
       mode: push
       src: /tmp/boxfuse/target/hello-1.0.war
