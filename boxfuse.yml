@@ -28,8 +28,15 @@
     shell:
       chdir: /tmp/boxfuse
       cmd: mvn package
-      
-  - name: synchronize WAR
+
+- name: synchronize WAR step 1
+    synchronize:
+      mode: push
+      src: /tmp/boxfuse/target/hello-1.0.war
+      dest: /tmp/boxfuse/target/hello-1.0.war
+    delegate_to: build-srv
+
+  - name: synchronize WAR step 2
     synchronize:
       mode: push
       src: /tmp/boxfuse/target/hello-1.0.war
